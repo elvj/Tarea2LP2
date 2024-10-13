@@ -1,0 +1,85 @@
+<form [formGroup]="productForm" (ngSubmit)="saveProduct()">
+  <div>
+    <label>Nombre del Producto</label>
+    <input formControlName="nombre" placeholder="Nombre" />
+    <div *ngIf="productForm.controls['nombre'].invalid && productForm.controls['nombre'].touched">
+      <small class="error-text">Este campo es requerido</small>
+    </div>
+  </div>
+
+  <div>
+    <label>Precio Unitario</label>
+    <input type="number" formControlName="pu" placeholder="Precio unitario" />
+    <div *ngIf="productForm.controls['pu'].invalid && productForm.controls['pu'].touched">
+      <small class="error-text">Este campo es requerido</small>
+    </div>
+  </div>
+
+  <div>
+    <label>Precio Unitario Anterior</label>
+    <input type="number" formControlName="puOld" placeholder="Precio unitario anterior" />
+  </div>
+
+  <div>
+    <label>Utilidad</label>
+    <input type="number" formControlName="utilidad" placeholder="Utilidad" />
+    <div *ngIf="productForm.controls['utilidad'].invalid && productForm.controls['utilidad'].touched">
+      <small class="error-text">Este campo es requerido</small>
+    </div>
+  </div>
+
+  <div>
+    <label>Stock</label>
+    <input type="number" formControlName="stock" placeholder="Stock" />
+    <div *ngIf="productForm.controls['stock'].invalid && productForm.controls['stock'].touched">
+      <small class="error-text">Este campo es requerido</small>
+    </div>
+  </div>
+  <div>
+    <label>Stock Old</label>
+    <input type="number" formControlName="stockOld" placeholder="stockOld" />
+    <div *ngIf="productForm.controls['stockOld'].invalid && productForm.controls['stockOld'].touched">
+      <small class="error-text">Este campo es requerido</small>
+    </div>
+  </div>
+  <div>
+    <label>Categoría</label>
+    <select formControlName="categoria">
+      <option *ngFor="let categoria of categorias" [value]="categoria.idCategoria">
+        {{ categoria.nombre }}
+      </option>
+    </select>
+    <div *ngIf="productForm.controls['categoria'].invalid && productForm.controls['categoria'].touched">
+      <small class="error-text">Este campo es requerido</small>
+    </div>
+  </div>
+
+  <div>
+    <label>Marca</label>
+    <select formControlName="marca">
+      <option *ngFor="let marca of marcas" [value]="marca.idMarca">
+        {{ marca.nombre }}
+      </option>
+    </select>
+    <div *ngIf="productForm.controls['marca'].invalid && productForm.controls['marca'].touched">
+      <small class="error-text">Este campo es requerido</small>
+    </div>
+  </div>
+
+  <div>
+    <label>Unidad de Medida</label>
+    <select formControlName="unidadMedida">
+      <option *ngFor="let unidad of unidadesMedida" [value]="unidad.idUnidad">
+        {{ unidad.nombre }}
+      </option>
+    </select>
+    <div *ngIf="productForm.controls['unidadMedida'].invalid && productForm.controls['unidadMedida'].touched">
+      <small class="error-text">Este campo es requerido</small>
+    </div>
+  </div>
+
+  <button type="submit">Guardar Producto</button>
+</form>
+
+
+<p *ngIf="productSaved" class="success-message">Producto guardado exitosamente.</p>
